@@ -1,0 +1,87 @@
+<html>
+    <body>
+        <?php
+// define variables and set to empty values
+$name = $email = $gender = $comment = $website = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $name = test_input($_POST["name"]);
+  $email = test_input($_POST["email"]);
+  $website = test_input($_POST["website"]);
+  $comment = test_input($_POST["comment"]);
+  $gender = test_input($_POST["gender"]);
+}
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <h1>Book</h1>
+            Insert information below to get information on Janet Airlines flights.
+            <h2>Route</h2>
+            <input type="radio" name="direction" value="oneway">One way
+            <input type="radio" name="direction" value="return">Round trip
+            <br>
+            Departure Date:
+            <input type="date" name="dep">
+            Return Date:
+            <input type="date" name="arrive">
+            <br>
+            Origin:
+            <select name="origin">
+                <option value="AFP42">Air Force Plant 42</option>
+                <option value="alamogordo">Alamogordo–White Sands Regional Airport</option>
+                <option value="homey">Area 51</option>
+                <option value="edwards">Edwards Air Force Base</option>
+                <option value="henderson">Henderson Executive Airport</option>
+                <option value="hillafb">Hill Air Force Base</option>
+                <option value="lasvegas">McCarran International Airport</option>
+                <option value="nas">Naval Air Station Point Mugu</option>
+                <option value="naws">Naval Air Weapons Station China Lake</option>
+                <option value="navaloutlyingfield">Naval Outlying Field San Nicolas Island</option>
+                <option value="nellis">Nellis Air Force Base</option>
+                <option value="palmdale">Palmdale Regional Airport</option>
+                <option value="saltlakecity">Salt Lake City International Airport</option>
+                <option value="tonopah">Tonopah Test Range Airport</option>
+                <option value="Patterson">Wright-Patterson Air Force Base</option>
+            </select>
+            Destination:
+            <select name="destination">
+                <option value="AFP42">Air Force Plant 42</option>
+                <option value="alamogordo">Alamogordo–White Sands Regional Airport</option>
+                <option value="homey">Area 51</option>
+                <option value="edwards">Edwards Air Force Base</option>
+                <option value="henderson">Henderson Executive Airport</option>
+                <option value="hillafb">Hill Air Force Base</option>
+                <option value="lasvegas">McCarran International Airport</option>
+                <option value="nas">Naval Air Station Point Mugu</option>
+                <option value="naws">Naval Air Weapons Station China Lake</option>
+                <option value="navaloutlyingfield">Naval Outlying Field San Nicolas Island</option>
+                <option value="nellis">Nellis Air Force Base</option>
+                <option value="palmdale">Palmdale Regional Airport</option>
+                <option value="saltlakecity">Salt Lake City International Airport</option>
+                <option value="tonopah">Tonopah Test Range Airport</option>
+                <option value="Patterson">Wright-Patterson Air Force Base</option>
+            </select>
+            <br>
+            <input type="checkbox" name="nostop" value="NoStop"> Non-stop<br>
+            <input type="checkbox" name="dates" value="Dates"> Flexable dates
+            <h2>Passengers</h2>
+            <input type="number" name="adults" min="1" max="10">Adults
+            <input type="number" name="kids" min="0" max="10">Children 
+            <input type="number" name="infants" min="0" max="10">Infants 
+            <input type="number" name="pets" min="0" max="3">Pets <br>
+            <h4>Notes:</h4>
+            Adults are ages 12+, Children are ages 4-11, Infants are ages 3 and under<br>
+            Only 1 pet allowed in the cabin, and will count as a carryon. Others must be
+            stored in the cargo hold<br>
+            Lap infants will also count as a carry on<br>
+            <input type="submit" name="book" value="Book">  
+            <input type="reset">
+        </form>
+    </body>
+</html>
