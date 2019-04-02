@@ -2,6 +2,93 @@
     <body>
         <?php
 // define variables and set to empty values
+$airports = array(
+	"Air Force Plant 42" => array(
+		"name" => "Air Force Plant 42",
+    	"icao" => "KPMD",
+    	"iata" => "PMD"
+    ),
+    "Area 51" => array(
+		"name" => "Area 51",
+    	"icao" => "KXTA",
+    	"iata" => "XTA"
+    ),
+    "Alamogordo–White Sands Regional Airport" => array(
+		"name" => "Alamogordo–White Sands Regional Airport",
+    	"icao" => "KALM",
+    	"iata" => "ALM"
+    ),
+    "Camarillo Airport" => array(
+		"name" => "Camarillo Airport",
+    	"icao" => "KCMA",
+    	"iata" => "CMA"
+    ),
+    "Edwards Air Force Base" => array(
+		"name" => "Edwards Air Force Base",
+    	"icao" => "KEDW",
+    	"iata" => "EDW"
+    ),
+    "Henderson Executive Airport" => array(
+		"name" => "Henderson Executive Airport",
+    	"icao" => "KHND",
+    	"iata" => "HSH"
+    ),
+    "Hill Air Force Base" => array(
+		"name" => "Hill Air Force Base",
+    	"icao" => "KHIF",
+    	"iata" => "HIF"
+    ),
+    "McCarran International Airport" => array(
+		"name" => "McCarran International Airport",
+    	"icao" => "KLAS",
+    	"iata" => "LAS"
+    ),
+    "Naval Air Station Point Mugu" => array(
+		"name" => "Naval Air Station Point Mugu",
+    	"icao" => "KNTD",
+    	"iata" => "NTD"
+    ),
+    "Naval Air Weapons Station China Lake" => array(
+		"name" => "Naval Air Weapons Station China Lake",
+    	"icao" => "KNID",
+    	"iata" => "NID"
+    ),
+    "Naval Outlying Field San Nicolas Island" => array(
+		"name" => "Naval Outlying Field San Nicolas Island",
+    	"icao" => "KNSI",
+    	"iata" => "NSI"
+    ),
+    "Nellis Air Force Base" => array(
+		"name" => "Nellis Air Force Base",
+    	"icao" => "KLSV",
+    	"iata" => "LSV"
+    ),
+    "Palmdale Regional Airport" => array(
+		"name" => "Palmdale Regional Airport",
+    	"icao" => "KPMD",
+    	"iata" => "PMD"
+    ),
+    "Salt Lake City International Airport" => array(
+		"name" => "Salt Lake City International Airport",
+    	"icao" => "KSLC",
+    	"iata" => "SLC"
+    ),
+    "Santa Barbara Municipal Airport" => array(
+		"name" => "Santa Barbara Municipal Airport",
+    	"icao" => "KSBA",
+    	"iata" => "SBA"
+    ),
+    "Tonopah Test Range Airport" => array(
+		"name" => "Tonopah Test Range Airport",
+    	"icao" => "KTNX",
+    	"iata" => "XSD"
+    ),
+    "Wright-Patterson Air Force Base" => array(
+		"name" => "Wright-Patterson Air Force Base",
+    	"icao" => "KFFO",
+    	"iata" => "FFO"
+    )
+);
 $name = $email = $gender = $comment = $website = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -19,6 +106,7 @@ function test_input($data) {
   return $data;
 }
 ?>
+		
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <h1>Book</h1>
             Insert information below to get information on Janet Airlines flights.
@@ -33,39 +121,27 @@ function test_input($data) {
             <br>
             Origin:
             <select name="origin">
-                <option value="AFP42">Air Force Plant 42</option>
-                <option value="alamogordo">Alamogordo–White Sands Regional Airport</option>
-                <option value="homey">Area 51</option>
-                <option value="edwards">Edwards Air Force Base</option>
-                <option value="henderson">Henderson Executive Airport</option>
-                <option value="hillafb">Hill Air Force Base</option>
-                <option value="lasvegas">McCarran International Airport</option>
-                <option value="nas">Naval Air Station Point Mugu</option>
-                <option value="naws">Naval Air Weapons Station China Lake</option>
-                <option value="navaloutlyingfield">Naval Outlying Field San Nicolas Island</option>
-                <option value="nellis">Nellis Air Force Base</option>
-                <option value="palmdale">Palmdale Regional Airport</option>
-                <option value="saltlakecity">Salt Lake City International Airport</option>
-                <option value="tonopah">Tonopah Test Range Airport</option>
-                <option value="Patterson">Wright-Patterson Air Force Base</option>
+                <option value="">--Select Origin Airport--</option>
+                <?php
+				if(!$depairports) $depairports = array();
+
+					foreach($depairports as $airport) {
+					echo '<option value="'.$airport->icao.'">'.$airport->iata
+					.' - '.$airport->name.'</option>';
+		}
+		?>
             </select>
             Destination:
             <select name="destination">
-                <option value="AFP42">Air Force Plant 42</option>
-                <option value="alamogordo">Alamogordo–White Sands Regional Airport</option>
-                <option value="homey">Area 51</option>
-                <option value="edwards">Edwards Air Force Base</option>
-                <option value="henderson">Henderson Executive Airport</option>
-                <option value="hillafb">Hill Air Force Base</option>
-                <option value="lasvegas">McCarran International Airport</option>
-                <option value="nas">Naval Air Station Point Mugu</option>
-                <option value="naws">Naval Air Weapons Station China Lake</option>
-                <option value="navaloutlyingfield">Naval Outlying Field San Nicolas Island</option>
-                <option value="nellis">Nellis Air Force Base</option>
-                <option value="palmdale">Palmdale Regional Airport</option>
-                <option value="saltlakecity">Salt Lake City International Airport</option>
-                <option value="tonopah">Tonopah Test Range Airport</option>
-                <option value="Patterson">Wright-Patterson Air Force Base</option>
+                <option value="">--Select Destination Airport--</option>
+                <?php
+				if(!$arrairports) $arrairports = array();
+
+					foreach($depairports as $airport) {
+					echo '<option value="'.$airport->icao.'">'.$airport->iata
+					.' - '.$airport->name.'</option>';
+		}
+		?>
             </select>
             <br>
             <input type="checkbox" name="nostop" value="NoStop"> Non-stop<br>
