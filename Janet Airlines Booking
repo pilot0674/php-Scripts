@@ -3,87 +3,87 @@
         <?php
 // define variables and set to empty values
 $airports = array(
-	"Air Force Plant 42" => array(
+	0 => array(
 		"name" => "Air Force Plant 42",
     	"icao" => "KPMD",
     	"iata" => "PMD"
     ),
-    "Area 51" => array(
+    1 => array(
 		"name" => "Area 51",
     	"icao" => "KXTA",
     	"iata" => "XTA"
     ),
-    "Alamogordo–White Sands Regional Airport" => array(
+    2 => array(
 		"name" => "Alamogordo–White Sands Regional Airport",
     	"icao" => "KALM",
     	"iata" => "ALM"
     ),
-    "Camarillo Airport" => array(
+    3 => array(
 		"name" => "Camarillo Airport",
     	"icao" => "KCMA",
     	"iata" => "CMA"
     ),
-    "Edwards Air Force Base" => array(
+    4 => array(
 		"name" => "Edwards Air Force Base",
     	"icao" => "KEDW",
     	"iata" => "EDW"
     ),
-    "Henderson Executive Airport" => array(
+    5 => array(
 		"name" => "Henderson Executive Airport",
     	"icao" => "KHND",
     	"iata" => "HSH"
     ),
-    "Hill Air Force Base" => array(
+    6 => array(
 		"name" => "Hill Air Force Base",
     	"icao" => "KHIF",
     	"iata" => "HIF"
     ),
-    "McCarran International Airport" => array(
+    7 => array(
 		"name" => "McCarran International Airport",
     	"icao" => "KLAS",
     	"iata" => "LAS"
     ),
-    "Naval Air Station Point Mugu" => array(
+    8 => array(
 		"name" => "Naval Air Station Point Mugu",
     	"icao" => "KNTD",
     	"iata" => "NTD"
     ),
-    "Naval Air Weapons Station China Lake" => array(
+    9 => array(
 		"name" => "Naval Air Weapons Station China Lake",
     	"icao" => "KNID",
     	"iata" => "NID"
     ),
-    "Naval Outlying Field San Nicolas Island" => array(
+    10 => array(
 		"name" => "Naval Outlying Field San Nicolas Island",
     	"icao" => "KNSI",
     	"iata" => "NSI"
     ),
-    "Nellis Air Force Base" => array(
+    11 => array(
 		"name" => "Nellis Air Force Base",
     	"icao" => "KLSV",
     	"iata" => "LSV"
     ),
-    "Palmdale Regional Airport" => array(
+    12 => array(
 		"name" => "Palmdale Regional Airport",
     	"icao" => "KPMD",
     	"iata" => "PMD"
     ),
-    "Salt Lake City International Airport" => array(
+    13 => array(
 		"name" => "Salt Lake City International Airport",
     	"icao" => "KSLC",
     	"iata" => "SLC"
     ),
-    "Santa Barbara Municipal Airport" => array(
+    14 => array(
 		"name" => "Santa Barbara Municipal Airport",
     	"icao" => "KSBA",
     	"iata" => "SBA"
     ),
-    "Tonopah Test Range Airport" => array(
+    15 => array(
 		"name" => "Tonopah Test Range Airport",
     	"icao" => "KTNX",
     	"iata" => "XSD"
     ),
-    "Wright-Patterson Air Force Base" => array(
+    16 => array(
 		"name" => "Wright-Patterson Air Force Base",
     	"icao" => "KFFO",
     	"iata" => "FFO"
@@ -123,11 +123,10 @@ function test_input($data) {
             <select name="origin">
                 <option value="">--Select Origin Airport--</option>
                 <?php
-				if(!$depairports) $depairports = array();
 
-					foreach($depairports as $airport) {
-					echo '<option value="'.$airport->icao.'">'.$airport->iata
-					.' - '.$airport->name.'</option>';
+					for( $i = 0; $i<=16; $i++ ) {
+					echo '<option value="'.$airports[$i]['icao'].'">'.$airports[$i]['iata']
+					.' - '.$airports[$i]['name'].'</option>';
 		}
 		?>
             </select>
@@ -135,11 +134,9 @@ function test_input($data) {
             <select name="destination">
                 <option value="">--Select Destination Airport--</option>
                 <?php
-				if(!$arrairports) $arrairports = array();
-
-					foreach($depairports as $airport) {
-					echo '<option value="'.$airport->icao.'">'.$airport->iata
-					.' - '.$airport->name.'</option>';
+				for( $i = 0; $i<=16; $i++ ) {
+					echo '<option value="'.$airports[$i]['icao'].'">'.$airports[$i]['iata']
+					.' - '.$airports[$i]['name'].'</option>';
 		}
 		?>
             </select>
